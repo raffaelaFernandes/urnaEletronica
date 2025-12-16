@@ -49,26 +49,36 @@ function carregarResultados() {
     const votos = JSON.parse(localStorage.getItem("votos")) || {};
     const container = document.getElementById("resultados");
 
+    container.innerHTML = "";
+
     ordemCategorias.forEach(cat => {
         if (!votos[cat]) return;
 
         let total = 0;
-        let vencedor = "";
         let maior = 0;
+        let vencedores = [];
 
         for (const nome in votos[cat]) {
-            total += votos[cat][nome];
+            const qtd = votos[cat][nome];
+            total += qtd;
 
-            if (votos[cat][nome] > maior) {
-                maior = votos[cat][nome];
-                vencedor = nome;
+            if (qtd > maior) {
+                maior = qtd;
+                vencedores = [nome];
+            } else if (qtd === maior) {
+                vencedores.push(nome);
             }
         }
+
+        const resultado =
+            vencedores.length > 1
+                ? `Empate entre: ${vencedores.join(", ")}`
+                : vencedores[0];
 
         const bloco = document.createElement("div");
         bloco.innerHTML = `
             <h2>${cat.toUpperCase()}</h2>
-            <p><strong>Vencedor:</strong> ${vencedor}</p>
+            <p><strong>Resultado:</strong> ${resultado}</p>
             <p><strong>Votos do vencedor:</strong> ${maior}</p>
             <p><strong>Total de votos da categoria:</strong> ${total}</p>
             <hr>
