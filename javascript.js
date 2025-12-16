@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (inicio) {
         inicio.addEventListener("click", () => {
-            window.location.href = "filho.html";
+            window.location.href = "index.html";
         });
     }
 
@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 localStorage.removeItem("ultimaCategoria");
                 sessionStorage.removeItem("acessoResultados");
 
-                window.location.href = "filho.html";
+                window.location.href = "index.html";
             }
         });
     }
