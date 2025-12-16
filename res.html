@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultados</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+    const acesso = sessionStorage.getItem("acessoResultados");
+
+    if (!acesso) {
+        const senha = prompt("Digite a senha:");
+
+        if (senha === "1234") {
+            sessionStorage.setItem("acessoResultados", "true");
+        } else {
+            alert("Acesso negado.");
+            window.location.href = "fim.html";
+        }
+    }
+</script>
+</head>
+<body>
+    <h1>Resultados Finais</h1>
+    <div id="resultados"></div>
+
+    <script src="javascript.js"></script>
+    <script>
+        carregarResultados();
+    </script>
+
+    <button id="resetar">Resetar votação</button>
+</body>
+</html>
